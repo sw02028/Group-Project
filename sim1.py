@@ -1,5 +1,3 @@
-
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,14 +8,16 @@ data = data[2:]
 
 #print(data)
 
+#intitial conditions
 r = (14.75/100)/12
 P_0 = 9000
-    
 n = np.linspace(3,360,120)
 N = 360
-    
+
+#formulae
 C = (r/(1-((1+r)**(-N))))*P_0
 P_n = (((1+r)**n)*P_0 ) - ((((1+r)**n)-1)/r)*C
+
 
 House_prices = data.iloc[0:120,1]
 Relative_house = (House_prices / House_prices[2]) * 10000
@@ -25,6 +25,7 @@ Relative_house = (House_prices / House_prices[2]) * 10000
 Equity = Relative_house - P_n
 print (Equity)
 
+#plotting
 plt.figure()
 time = np.linspace(1974, 2003.75, 120)
 over = np.linspace(2003.75,2017.25,55)
@@ -34,6 +35,7 @@ plt.xlabel("Years")
 plt.ylabel("Equity")
 plt.title("Total Equity in house")
 
+#total payments made
 total = 360 * C
 print(total)
 
@@ -49,6 +51,7 @@ avg_income = annual_income[annual_income.columns[len(annual_income.columns)-1]]
 relative_inc = (avg_income / avg_income[0]) * 3000
 #print (relative_inc)
 
+#plotting
 plt.figure()
 Years3 = np.linspace(1974,2016,174)
 plt.plot(Years3, Salary, label = "Salary needed")
